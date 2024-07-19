@@ -3,7 +3,7 @@ import os
 import unittest
 from unittest.mock import patch
 import boto3
-from moto import mock_dynamodb2
+from moto import mock_dynamodb
 import json
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
@@ -12,11 +12,11 @@ from lambda_module import lambda_handler, visit_handler
 
 class TestLambdaFunctions(unittest.TestCase):
 
-    @mock_dynamodb2
+    @mock_dynamodb
     @patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
     def setUp(self):
         # Set up the DynamoDB table for testing
-        self.dynamodb = boto3.client('dynamodb', region_name='us-east-1')
+        self.dynamodb = boto3.client('dynamodb', region_name='eu-west-1')
         self.dynamodb.create_table(
             TableName='TestTable',
             KeySchema=[
@@ -42,7 +42,7 @@ class TestLambdaFunctions(unittest.TestCase):
             Item={'ID': {'S': 'page_counter'}, 'count': {'N': '0'}}
         )
 
-    @mock_dynamodb2
+    @mock_dynamodb
     @patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
     def test_lambda_handler(self):
         # Invoke the lambda_handler function
@@ -58,7 +58,7 @@ class TestLambdaFunctions(unittest.TestCase):
         self.assertEqual(body['message'], 'Hello World')
         self.assertIn('table', body)
 
-    @mock_dynamodb2
+    @mock_dynamodb
     @patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
     def test_visit_handler(self):
         # Invoke the visit_handler function
