@@ -8,7 +8,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: app/function.lambda_handler
+      Handler: app/lambda_module.lambda_handler
       Runtime: python3.12
       Events:
         HTTP:
@@ -32,7 +32,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: app/function.visit_handler
+      Handler: app/lambda_module.visit_handler
       Runtime: python3.12
       Events:
         HTTP:

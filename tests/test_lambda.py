@@ -1,15 +1,14 @@
 import sys
+import os
 import unittest
 from unittest.mock import patch
 import boto3
 from moto import mock_dynamodb2
 import json
-import os
-from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
 
-from function.py import lambda_handler, visit_handler  
+from lambda_module import lambda_handler, visit_handler 
 
 class TestLambdaFunctions(unittest.TestCase):
 
