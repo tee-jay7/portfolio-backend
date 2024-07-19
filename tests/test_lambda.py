@@ -1,5 +1,4 @@
-# test_lambda.py
-
+import sys
 import unittest
 from unittest.mock import patch
 import boto3
@@ -8,7 +7,9 @@ import json
 import os
 from datetime import datetime
 
-from app.function.py import lambda_handler, visit_handler  
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
+
+from function.py import lambda_handler, visit_handler  
 
 class TestLambdaFunctions(unittest.TestCase):
 
