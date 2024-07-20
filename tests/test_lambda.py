@@ -66,11 +66,9 @@ class TestLambdaFunctions(unittest.TestCase):
         event = {}
         context = {}
         response = visit_handler(event, context)
-
-        # Parse the response body
+    
         body = json.loads(response['body'])
 
-        # Assert the response
         self.assertEqual(response['statusCode'], 200)
         self.assertEqual(body['message'], 'Update successful')
         self.assertEqual(body['updated_value'], '1')
