@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../a
 from lambda_module import lambda_handler, visit_handler  
 
 @mock_aws
-@patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
+@patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1'})
 class TestLambdaFunctions(unittest.TestCase):
     def setUp(self):
         self.dynamodb = boto3.client("dynamodb", region_name="eu-west-1")
