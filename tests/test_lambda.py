@@ -15,7 +15,7 @@ from lambda_module import lambda_handler, visit_handler
 @patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1'})
 class TestLambdaFunctions(unittest.TestCase):
     def setUp(self):
-        self.dynamodb = boto3.client("dynamodb", region_name="eu-west-1")
+        self.dynamodb = boto3.client("dynamodb")
         self.dynamodb.create_table(
             TableName='TestTable',
             KeySchema=[
