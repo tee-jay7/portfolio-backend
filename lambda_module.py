@@ -5,7 +5,9 @@ import datetime
 
 datetime_now = datetime.datetime.now(datetime.UTC)
 
-client = boto3.client('dynamodb')
+
+client = boto3.client('dynamodb', region_name='eu-west-1') 
+
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, obj):
