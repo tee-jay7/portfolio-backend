@@ -1,17 +1,16 @@
 import json
 import boto3
 import os
-import datetime
-
-datetime_now = datetime.datetime.now(datetime.UTC)
+from datetime import datetime
 
 
-client = boto3.client('dynamodb', region_name='eu-west-1') 
+
+client = boto3.client('dynamodb') 
 
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, obj):
-        if isinstance(obj, datetime.datetime):
+        if isinstance(obj, datetime):
             return obj.isoformat()
         return json.JSONEncoder.default(self, obj)
 
