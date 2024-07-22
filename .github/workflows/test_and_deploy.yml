@@ -36,3 +36,21 @@ jobs:
           AWS_SECRET_ACCESS_KEY: testing
           AWS_DEFAULT_REGION: us-west-1
         run: python -m unittest discover -s tests
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install SAM CLI
+        run: |
+          pip install aws-sam-cli
+
+      - name: Build SAM application
+        run: sam build
+
+      - name: Deploy SAM application
+        run: |
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name crme-sam-app --capabilities CAPABILITY_IAM
