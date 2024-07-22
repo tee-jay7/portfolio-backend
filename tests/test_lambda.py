@@ -12,7 +12,7 @@ import json
 from lambda_module import lambda_handler, visit_handler  
 
 @mock_aws
-@patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1'})
+@patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1','AWS_ACCESS_KEY_ID': 'testing', 'AWS_SECRET_ACCESS_KEY': 'testing'})
 class TestLambdaFunctions(unittest.TestCase):
     def setUp(self):
         self.dynamodb = boto3.client('dynamodb', region_name='eu-west-1') 
@@ -43,7 +43,7 @@ class TestLambdaFunctions(unittest.TestCase):
 
 
     @mock_aws
-    @patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
+    @patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_ACCESS_KEY_ID': 'testing', 'AWS_SECRET_ACCESS_KEY': 'testing'})
     def test_lambda_handler(self):
         # Invoke the lambda_handler function
         event = {}
@@ -60,7 +60,7 @@ class TestLambdaFunctions(unittest.TestCase):
 
     
     @mock_aws
-    @patch.dict(os.environ, {'TABLE_NAME': 'TestTable'})
+    @patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_ACCESS_KEY_ID': 'testing', 'AWS_SECRET_ACCESS_KEY': 'testing'})
     def test_visit_handler(self):
         # Invoke the visit_handler function
         event = {}
