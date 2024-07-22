@@ -15,7 +15,7 @@ from lambda_module import lambda_handler, visit_handler
 @patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1'})
 class TestLambdaFunctions(unittest.TestCase):
     def setUp(self):
-        self.dynamodb = boto3.client("dynamodb")
+        self.dynamodb = boto3.client('dynamodb', region_name='eu-west-1') 
         self.dynamodb.create_table(
             TableName='TestTable',
             KeySchema=[
@@ -73,7 +73,7 @@ class TestLambdaFunctions(unittest.TestCase):
         self.assertEqual(body['message'], 'Update successful')
         self.assertEqual(body['updated_value'], '1')
 
-   # test to check the DynamoDB table to ensure the count was incremented
+
         result = self.dynamodb.get_item(
             TableName='TestTable',
             Key={'ID': {'S': 'page_counter'}}
