@@ -9,7 +9,7 @@ import json
 
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
 
-from lambda_module import lambda_handler, visit_handler  
+from app.lambda_module import lambda_handler, visit_handler  
 
 @mock_aws
 @patch.dict(os.environ, {'TABLE_NAME': 'TestTable', 'AWS_DEFAULT_REGION': 'eu-west-1','AWS_ACCESS_KEY_ID': 'testing', 'AWS_SECRET_ACCESS_KEY': 'testing'})
