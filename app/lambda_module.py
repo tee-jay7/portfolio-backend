@@ -55,7 +55,7 @@ def visit_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {
-            "Access-Control-Allow-Origin": "http://johntwasam.xyz.s3-website-eu-west-1.amazonaws.com.com/",
+            "Access-Control-Allow-Origin": "https://johntwasam.xyz",
             "Access-Control-Allow-Credentials": "true"
         },
         "body": json.dumps({
