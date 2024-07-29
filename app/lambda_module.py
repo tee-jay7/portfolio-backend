@@ -27,20 +27,21 @@ def lambda_handler(event, context):
         },
         "body": json.dumps({
             "message": "Hello World",
-            'table': response
+            'table': response,
+            "event": event
         }, cls=DateTimeEncoder)
     }
 
 
 def visit_handler(event, context):
-    origin = event['headers'].get('Origin')
+    # origin = event['headers'].get('Origin')
     
     # Check the origin
-    if origin != ALLOWED_ORIGIN:
-        return {
-            'statusCode': 403,
-            'body': 'Forbidden'
-        }
+    # if origin != ALLOWED_ORIGIN:
+    #     return {
+    #         'statusCode': 403,
+    #         'body': 'Forbidden'
+    #     }
     
     table_name = os.getenv('TABLE_NAME')
     key_value = "page_counter"
