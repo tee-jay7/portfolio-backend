@@ -3,9 +3,9 @@ import boto3
 import os
 from datetime import datetime
 
-
-
 client = boto3.client('dynamodb') 
+
+ALLOWED_ORIGIN = os.getenv("ORIGIN")
 
 
 class DateTimeEncoder(json.JSONEncoder):
@@ -33,6 +33,15 @@ def lambda_handler(event, context):
 
 
 def visit_handler(event, context):
+    origin = event['headers'].get('Origin')
+    
+    # Check the origin
+    if origin != ALLOWED_ORIGIN:
+        return {
+            'statusCode': 403,
+            'body': 'Forbidden'
+        }
+    
     table_name = os.getenv('TABLE_NAME')
     key_value = "page_counter"
 
@@ -55,7 +64,7 @@ def visit_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {
-            "Access-Control-Allow-Origin": "https://johntwasam.xyz",
+            "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
             "Access-Control-Allow-Credentials": "true"
         },
         "body": json.dumps({

@@ -19,7 +19,8 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref DynamoDBTable
-          AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+          ORIGIN: https://johntwasam.xyz
+
       Policies:
       - Statement:
         - Sid: DDBDescribeTablePolicy
