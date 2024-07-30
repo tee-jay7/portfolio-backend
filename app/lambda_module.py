@@ -5,7 +5,6 @@ from datetime import datetime
 
 client = boto3.client('dynamodb') 
 
-ALLOWED_ORIGIN = os.getenv("ORIGIN")
 
 
 class DateTimeEncoder(json.JSONEncoder):
@@ -34,9 +33,9 @@ def lambda_handler(event, context):
 
 
 def visit_handler(event, context):
-    # origin = event['headers'].get('Origin')
+    # origin =  event['requestContext']['identity']['sourceIp']
     
-    # Check the origin
+    # # Check the origin
     # if origin != ALLOWED_ORIGIN:
     #     return {
     #         'statusCode': 403,
@@ -65,7 +64,7 @@ def visit_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {
-            "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+            "Access-Control-Allow-Origin": "https://johntwasam.xyz",
             "Access-Control-Allow-Credentials": "true"
         },
         "body": json.dumps({
