@@ -56,8 +56,8 @@ def visit_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {
-            "Access-Control-Allow-Origin": "https://johntwasam.xyz",
-            "Access-Control-Allow-Credentials": "true"
+             "Access-Control-Allow-Origin": '*',
+            "Content-Type": "application/json"
         },
         "body": json.dumps({
             "message": "Update successful",
