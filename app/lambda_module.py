@@ -33,14 +33,6 @@ def lambda_handler(event, context):
 
 
 def visit_handler(event, context):
-    # origin =  event['requestContext']['identity']['sourceIp']
-    
-    # # Check the origin
-    # if origin != ALLOWED_ORIGIN:
-    #     return {
-    #         'statusCode': 403,
-    #         'body': 'Forbidden'
-    #     }
     
     table_name = os.getenv('TABLE_NAME')
     key_value = "page_counter"
